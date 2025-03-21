@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 22% 10%;
+  --foreground: 60 9.1% 97.8%;
+  --card: 240 22% 13%;
+  --card-foreground: 60 9.1% 97.8%;
+  --popover: 240 22% 13%;
+  --popover-foreground: 60 9.1% 97.8%;
+  --primary: 47.9 95.8% 53.1%;
+  --primary-foreground: 26 83.3% 14.1%;
+  --secondary: 240 15% 20%;
+  --secondary-foreground: 60 9.1% 97.8%;
+  --muted: 240 15% 20%;
+  --muted-foreground: 24 5.4% 63.9%;
+  --accent: 240 15% 20%;
+  --accent-foreground: 60 9.1% 97.8%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --border: 240 15% 20%;
+  --input: 240 15% 20%;
+  --ring: 35.5 91.7% 32.9%;
+  --radius: 0.5rem;
+}
+
+* {
+  @apply border-border;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+body {
+  @apply bg-background text-foreground font-inter;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-inter-tight font-medium;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/80;
+}
+
+@layer components {
+  .court-card {
+    @apply bg-card/80 backdrop-blur-sm border-2 border-primary/50 shadow-lg rounded-lg overflow-hidden;
+  }
+
+  .court-header {
+    @apply bg-primary/20 border-b border-primary/50 p-4 flex items-center justify-between;
+  }
+
+  .court-content {
+    @apply p-6;
+  }
+
+  .court-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 transition-colors duration-200 font-semibold py-2 px-4 rounded-lg;
+  }
+
+  .rounded-component {
+    @apply rounded-lg overflow-hidden;
+  }
+}
+
+/* Ensure rounded corners are applied */
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+/* Blob animation keyframes */
+@keyframes blobs {
+  0% {
+    opacity: 0;
+    transform: scale(0) translate(calc(-330px - 50%), -50%);
+  }
+  1% {
+    opacity: 1;
+  }
+  35%,
+  65% {
+    opacity: 1;
+    transform: scale(0.9) translate(-50%, -50%);
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translate(calc(330px - 50%), -50%);
+  }
+}
+
+@keyframes blob-grow {
+  0%,
+  39% {
+    transform: scale(0) translate(-50%, -50%);
+  }
+  40%,
+  42% {
+    transform: scale(1, 0.9) translate(-50%, -50%);
+  }
+  43%,
+  44% {
+    transform: scale(1.2, 1.1) translate(-50%, -50%);
+  }
+  45%,
+  46% {
+    transform: scale(1.3, 1.2) translate(-50%, -50%);
+  }
+  47%,
+  48% {
+    transform: scale(1.4, 1.3) translate(-50%, -50%);
+  }
+  52% {
+    transform: scale(1.5, 1.4) translate(-50%, -50%);
+  }
+  54% {
+    transform: scale(1.7, 1.6) translate(-50%, -50%);
+  }
+  58% {
+    transform: scale(1.8, 1.7) translate(-50%, -50%);
+  }
+  68%,
+  70% {
+    transform: scale(1.7, 1.5) translate(-50%, -50%);
+  }
+  78% {
+    transform: scale(1.6, 1.4) translate(-50%, -50%);
+  }
+  80%,
+  81% {
+    transform: scale(1.5, 1.4) translate(-50%, -50%);
+  }
+  82%,
+  83% {
+    transform: scale(1.4, 1.3) translate(-50%, -50%);
+  }
+  84%,
+  85% {
+    transform: scale(1.3, 1.2) translate(-50%, -50%);
+  }
+  86%,
+  87% {
+    transform: scale(1.2, 1.1) translate(-50%, -50%);
+  }
+  90%,
+  91% {
+    transform: scale(1, 0.9) translate(-50%, -50%);
+  }
+  92%,
+  100% {
+    transform: scale(0) translate(-50%, -50%);
+  }
+}
+
+/* Verdict styling */
+.verdict-text-container {
+  position: relative;
+  padding: 0 1rem;
+}
+
+.verdict-text {
+  @apply text-foreground leading-relaxed text-lg;
+  font-family: var(--font-inter);
+  position: relative;
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0.5rem;
+}
+
+.verdict-text p {
+  @apply my-3;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.verdict-text strong {
+  @apply text-primary font-bold;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.verdict-text em {
+  @apply text-primary/90 italic;
+}
+
+.verdict-profitable {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+.verdict-profitable .court-header {
+  background: linear-gradient(to right, rgba(34, 197, 94, 0.05), rgba(255, 215, 0, 0.1), rgba(34, 197, 94, 0.05));
+}
+
+.verdict-unprofitable {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.verdict-unprofitable .court-header {
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.05), rgba(255, 215, 0, 0.1), rgba(239, 68, 68, 0.05));
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Quote styling for verdict */
+.verdict-text p:first-of-type::before,
+.verdict-text p:last-of-type::after {
+  content: '"';
+  font-family: var(--font-inter-tight);
+  font-size: 2rem;
+  line-height: 0;
+  position: relative;
+  color: hsl(var(--primary));
+  opacity: 0.7;
+}
+
+.verdict-text p:first-of-type::before {
+  top: 0.5rem;
+  left: -0.5rem;
+  margin-right: 0.25rem;
+}
+
+.verdict-text p:last-of-type::after {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  margin-left: 0.25rem;
+}
+
+/* Highlight key phrases */
+.verdict-text p:not(:first-of-type):not(:last-of-type) {
+  position: relative;
+}
+
+.verdict-text p:not(:first-of-type):not(:last-of-type)::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0.75rem;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background-color: hsl(var(--primary));
+  opacity: 0.7;
+}
+
+@keyframes expandVerdict {
+  from {
+    max-height: 200px;
+  }
+  to {
+    max-height: 2000px;
+  }
+}
+
+.verdict-expand {
+  animation: expandVerdict 0.5s ease-in-out forwards;
+}
+
+.verdict-collapse {
+  animation: expandVerdict 0.5s ease-in-out reverse forwards;
+}
+
