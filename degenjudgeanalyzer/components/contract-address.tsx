@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function ContractAddress() {
   const [copied, setCopied] = useState(false)
-  const contractAddress = "125gShL67TBy51sm7W4vVFPxwiSFVpq75Zbh5pFJpump"
+  const contractAddress = "test"
 
   useEffect(() => {
     let timeout: NodeJS.Timeout
